@@ -506,6 +506,7 @@ void PositionControllerNode::OdometryCallback(const nav_msgs::OdometryConstPtr& 
 
       //we use clear because we later want to be sure that we used the previously calculated velocity.
       actuator_msg->angular_velocities.clear();
+      
       //for all propellers, we put them into actuator_msg so they will later be used to control the crazyflie.
       for (int i = 0; i < ref_rotor_velocities.size(); i++)
          actuator_msg->angular_velocities.push_back(ref_rotor_velocities[i]);

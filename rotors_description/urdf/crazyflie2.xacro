@@ -34,6 +34,7 @@
   <xacro:property name="radius_rotor" value="0.0225" /> <!-- [m] -->
   <xacro:property name="sin45" value="0.707106781186" />
   <xacro:property name="cos45" value="0.707106781186" />
+
   <!-- Forster's -->
   <xacro:property name="motor_constant" value="1.28192e-08" /> <!-- [kg m/s^2] -->
   <xacro:property name="moment_constant" value="5.964552e-03" /> <!-- [m] -->
@@ -42,6 +43,8 @@
   <xacro:property name="max_rot_velocity" value="2618" /> <!-- [rad/s] -->
   <xacro:property name="rotor_drag_coefficient" value="8.06428e-05" />
   <xacro:property name="rolling_moment_coefficient" value="0.000001" />
+
+
 
   <!-- Property Blocks -->
   <xacro:property name="body_inertia">
