@@ -57,7 +57,7 @@ It is possible to change the final desired position, velocity, and yaw of the Cr
 ### Controller Tuning
 There are two sets of parameters and conroller gains that can be tuned.
 
-The first is those of the position controller (also known as the "reference generator") itself, which takes in odometry information to calculate the roll, pitch, yaw rate, and thrust commands.file contains the position controller. The reference generator is found in rotors_control/src/nodes/position_controller.py, and the following shows the controller gains and parameters that can be tuned (these can be found in the __init_ function):
+The first is those of the position controller (also known as the "reference generator") itself, which takes in odometry information to calculate the roll, pitch, yaw rate, and thrust commands.file contains the position controller. The reference generator is found in rotors_control/src/nodes/position_controller.py, and the following shows the controller gains and parameters that can be tuned (these can be found in the _init_ function):
 
 ``` python
 
