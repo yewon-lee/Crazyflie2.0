@@ -54,6 +54,58 @@ It is possible to change the final desired position, velocity, and yaw of the Cr
   self.vz_d = 0.0 # desired z-velocity
 ```
 
+### Controller Tuning
+There are two sets of parameters and conroller gains that can be tuned.
+
+The first is those of the position controller (also known as the "reference generator") itself, which takes in odometry information to calculate the roll, pitch, yaw rate, and thrust commands.file contains the position controller. The reference generator is found in rotors_control/src/nodes/position_controller.py, and the following shows the controller gains and parameters that can be tuned (these can be found in the __init_ function):
+
+``` python
+
+self.Kp_yaw = 4
+
+# natural frequencies and damping ratios
+w_n_x = 3.0  
+zeta_x = 0.0 
+w_n_y = 3.0
+zeta_y = 1.0
+w_n_z = 10.0 
+zeta_z = 1.0 
+
+# gains
+self.Kp_xc = w_n_x**2
+self.Kv_xc = 2 * w_n_x * zeta_x
+self.Kp_yc = w_n_x**2
+self.Kv_yc = 2 * w_n_x * zeta_x
+self.Kp_zc = w_n_z**2
+self.Kv_zc = 2 * w_n_z * zeta_z
+
+# x, y and z limiters
+self.limit_x = 1.0 
+self.limit_y = 1.0 
+self.limit_z = 1.0 
+```
+
+The second is the on-board controller which converts the roll, pitch, yaw rate, and thrust commands to the four rotor velocities that get sent to Gazebo. This can be found in the file, rotors_control/src/nodes/roll_pitch_yawrate_thrust_crazyflie.py. The following lists the parameters and control gains that may be tuned:
+
+``` python
+
+#  parameters
+self.ANGULAR_MOTOR_COEFFICIENT = 1.8 # ANGULAR_MOTOR_COEFFICIENT
+self.MOTORS_INTERCEPT = 2300 # MOTORS_INTERCEPT [rad/s]
+self.MAX_PROPELLERS_ANGULAR_VELOCITY = 2618 # MAX PROPELLERS ANGULAR VELOCITY [rad/s]
+
+# controller gains
+self.attitude_gain_kp = [0.0611, 0.0611]
+self.attitude_gain_ki = [0.0349, 0.0349]
+self.rate_gain_kp = [1000,1000,1000]
+self.rate_gain_ki = [0.0, 0.0, 95.6939] 
+
+# thrust percentage
+self.thrust_percentage = 1.0
+```
+
+The above can all be found in the _init_ function of the roll_pitch_yawrate_thrust_crazyflie.py file.
+
 ### Limitations
 
 There are currently a few limitations of this simulation:
@@ -113,6 +165,10 @@ The Crazyflies' final positions, yaws, and velocities can be changed by referrin
 ```
 
 This trajectory-tracking double-UAV simulation can be extended to more UAVs, although because of the current structure of the code, it requires tedious modifications. Specifically, a separate position controller node must be created for each inividual Crazyflie (for instance, if you want a third Crazyflie, you would need to create a position_controller_node_ChihChun_3.py and include that in the launch file).
+
+### Controller Tuning
+
+This simulation uses the same controllers as those of the single-UAV simulation. Please refer to the "Controller Tuning" subsection in the single-UAV case.
 
 ### Limitations
 
