@@ -33,6 +33,12 @@ This simulation takes a single Crazyflie from position (0,0,0) to (1,1,1) using 
 roslaunch rotors_gazebo crazyflie2_hovering_example_ChihChun.launch
 ```
 
+### Observations
+
+A plot of what should be observed for this simulation is shown below. The following is a position versus time plot of the Crazyflie when the simulation is launched. The y-axis is the position (in x, y and z directions) in meters and the x-axis is the time in seconds. The x and y positions converge relatively well, but there is a lot of oscillation in the z direction.
+
+![a-singleUAV](https://user-images.githubusercontent.com/68444609/91673961-85ba1380-eaeb-11ea-8222-36530fc9acac.png)
+
 ### Customizing
 
 It is possible to change the final desired position, velocity, and yaw of the Crazyflie. To customize these, change the following variables in rotors_control/src/nodes/position_controller_node_ChihChun.py:
@@ -64,6 +70,24 @@ This simulation uses the same position controller as the single-UAV trajectory t
 ```bash
 roslaunch rotors_gazebo crazyflie2_swarm_example_ChihChun.launch
 ```
+
+### Observations
+
+Plots of what should be observed for this simulation are shown below. Although it uses the exact same position controller and controller gains as the single-UAV trajectory tracking example, there are a few noticable differences in the response plots:
+- The z-direction oscillations are minimal.
+- The positions converge faster.
+
+It can also be noted that there is some error in the z-direction.
+
+The following is a position versus time plot of crazyflie2_1 (i.e. the first of the two UAVs).
+
+![a-UAV1plot](https://user-images.githubusercontent.com/68444609/91673964-88b50400-eaeb-11ea-8f13-74cce74fdf5e.png)
+
+The following is a position versus time plot of crazyflie2_2 (i.e. the second of the two UAVs).
+
+![a-UAV2plot](https://user-images.githubusercontent.com/68444609/91673967-8baff480-eaeb-11ea-8e06-eac0014b0b96.png)
+
+
 
 ### Customizing
 
