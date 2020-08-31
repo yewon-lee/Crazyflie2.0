@@ -24,11 +24,16 @@ I recommend setting up my code following @gsilano's instructions on https://gith
 
 
 ## Simulating single-UAV trajectory tracking
+
+### Launching
+
 This simulation takes a single Crazyflie from position (0,0,0) to (1,1,1) using a position controller. To launch the single-UAV trajectory tracking example, type the following into your terminal:
 
 ```bash
 roslaunch rotors_gazebo crazyflie2_hovering_example_ChihChun.launch
 ```
+
+### Customizing
 
 It is possible to change the final desired position, velocity, and yaw of the Crazyflie. To customize these, change the following variables in rotors_control/src/nodes/position_controller_node_ChihChun.py:
 
@@ -43,17 +48,24 @@ It is possible to change the final desired position, velocity, and yaw of the Cr
   self.vz_d = 0.0 # desired z-velocity
 ```
 
+### Limitations
+
 There are currently a few limitations of this simulation:
 - Although the x- and y- positions converge relatively well, there is a lot of z-direction oscillation which does not dampen in time (but it doesn't grow, either).
 - I have not simulated this test case with other final positions, yaws, and velocities - so this is potentially something to investigate further.
 
 
 ## Simulating the double-UAV trajectory tracking
+
+### Launching
+
 This simulation uses the same position controller as the single-UAV trajectory tracking case. By default, it takes two Crazyflies from (-2,0,0) and (-1,0,0) to (-1,1,1) and (0,1,1), respectively. To launch the double-UAV trajectory tracking example, type the following into your terminal:
 
 ```bash
 roslaunch rotors_gazebo crazyflie2_swarm_example_ChihChun.launch
 ```
+
+### Customizing
 
 It is possible to customize the two Crazyflies' initial and final positions. The Crazyflies' intial positions can be changed directly in the launch file, found in rotors_gazebo/launch/crazyflie2_swarm_example_ChihChun.launch:
 
@@ -78,15 +90,37 @@ The Crazyflies' final positions, yaws, and velocities can be changed by referrin
 
 This trajectory-tracking double-UAV simulation can be extended to more UAVs, although because of the current structure of the code, it requires tedious modifications. Specifically, a separate position controller node must be created for each inividual Crazyflie (for instance, if you want a third Crazyflie, you would need to create a position_controller_node_ChihChun_3.py and include that in the launch file).
 
+### Limitations
+
 Current limitations of this double-UAV trajectory tracking example are:
 - The simulation is very slow with two UAVs; extending it to more UAVs will likely be even slower.
 - Extending this simulation to more UAVs is a little tedious due to the structure of the code.
 - The simulation has not been run with differing initial and final positions from the default ones. This is something that should be investigated further.
 
 ## Simulating double-UAV system with the FMP algorithm
-This simulation uses the same position controller as the single- and double-UAV trajectory tracking cases. By default, it takes two Crazyflies from () and () to () and () without the two UAVs colliding with one another, following the FMP algorithm. To launch this example, type the following into your terminal:
+
+### Launching
+
+This simulation uses the same position controller as the single- and double-UAV trajectory tracking cases. By default, it takes two Crazyflies from (0,0,0) and (1,1,0) to (1,1,1) and (0,0,1) without the two UAVs colliding with one another, following the FMP algorithm. To launch this example, type the following into your terminal:
 
 ```bash
 roslaunch rotors_gazebo crazyflie2_multiUAV_flocking_ChihChun.launch
 ```
+
+### Customizing
+The two Crazyflies' initial and final desired positions can be easily customized. It simply involves changing the following lines in /rotors_control/src/nodes/position_controller_node_ChihChun_flocking.py, which can be found in the "main function":
+
+``` python
+initials = np.array([[0,0,0],[1,1,0]])
+finals = np.array([[1,1,1],[0,0,1]])
+vx_ds = [0.0,0.0] # value in index 0 and 1 is the desired vx for crazyflie_0 and crazyflie_1, respectively
+vy_ds = [0.0,0.0] # value in index 0 and 1 is the desired vy for crazyflie_0 and crazyflie_1, respectively
+vz_ds = [0.0,0.0] # value in index 0 and 1 is the desired vz for crazyflie_0 and crazyflie_1, respectively
+yaw_ds = [0.0,0.0] # value in index 0 and 1 is the desired vx for crazyflie_0 and crazyflie_1, respectively
+```
+
+This simulation can also be extended to more UAVs. The current /rotors_control/src/nodes/position_controller_node_ChihChun_flocking.py supports up to four Crazyflies, but more can be added.
+
+### Limitations
+- There are still several bugs that need to be fixed before this simulation is fully functional. 
 
