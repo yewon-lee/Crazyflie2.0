@@ -6,16 +6,16 @@ This is an extension of CrazyS, originally developed by @gsilano (see https://gi
 
 Files in my github not found in @gsilano's:
 - rotors_control/src/nodes/position_controller_node_ChihChun.py
-- rotors_control/src/nodes/position_controller_node_ChihChun_1.py
-- rotors_control/src/nodes/position_controller_node_ChihChun_2.py
+- rotors_control/src/nodes/position_controller_node_ChihChun_1.py 
+- rotors_control/src/nodes/position_controller_node_ChihChun_2.py 
 - rotors_control/src/nodes/position_controller_node_ChihChun_flocking.py
-- rotors_control/src/nodes/position_controller_node_ChihChun_flocking_1.py
-- rotors_control/src/nodes/position_controller_node_ChihChun_flocking_2.py
-- rotors_conrol/src/nodes/position_controller_node_ChihChun_swarm.py
-- rotors_gazebo/launch/crazyflie2_hovering_example_ChihChun.launch
+- rotors_control/src/nodes/position_controller_node_ChihChun_flocking_1.py <- not used
+- rotors_control/src/nodes/position_controller_node_ChihChun_flocking_2.py <- not used
+- rotors_conrol/src/nodes/position_controller_node_ChihChun_swarm.py <- not used
+- rotors_gazebo/launch/crazyflie2_hovering_example_ChihChun.launch 
 - rotors_gazebo/launch/crazyflie2_multiUAV_flocking_ChihChun.launch
-- rotors_gazebo/launch/crazyflie2_singleUAV_flocking_ChihChun.launch
-- rotors_gazebo/launch/crazyflie2_swarm_example_ChihChun.launch
+- rotors_gazebo/launch/crazyflie2_singleUAV_flocking_ChihChun.launch <- not used
+- rotors_gazebo/launch/crazyflie2_swarm_example_ChihChun.launch 
 
 In the following sections, I demonstrate the setup and elaborate on the different scenarios that can be simulated in Gazebo.
 
