@@ -32,7 +32,7 @@ from std_msgs.msg import Empty, String
 from trajectory_msgs.msg import MultiDOFJointTrajectory, MultiDOFJointTrajectoryPoint # subscribe
 from nav_msgs.msg import Odometry # subscribe
 from mav_msgs.msg import Actuators # publish
-from roll_pitch_yawrate_thrust_crazyflie import roll_pitch_yawrate_thrust_crazyflie # change?
+from roll_pitch_yawrate_thrust_crazyflie_swarm import roll_pitch_yawrate_thrust_crazyflie # change?
 
 # NOTES:
 # Check whether subscribes to desired position
@@ -48,7 +48,7 @@ class PositionControllerNode_ChihChun(object):
     def __init__(self):
         
         # Publishers: rotor velocities
-        self.pub_rotor_vel = rospy.Publisher('/crazyflie2/command/motor_speed', Actuators, queue_size=1)
+        self.pub_rotor_vel = rospy.Publisher('/crazyflie2_1/command/motor_speed', Actuators, queue_size=1)
         
         # Subscribers: desired posn, current posn
 
@@ -56,7 +56,7 @@ class PositionControllerNode_ChihChun(object):
         #self.sub_goal = rospy.Subscriber('crazyflie2/command/trajectory', MultiDOFJointTrajectory, self._goal_callback)
         
         self._currpos_msg = Odometry()
-        self.sub_currpos = rospy.Subscriber('/crazyflie2/odometry', Odometry, self._currpos_callback)
+        self.sub_currpos = rospy.Subscriber('/crazyflie2_1/odometry', Odometry, self._currpos_callback)
 
         # end of publisher/subscriber
         # initialize other parameters
@@ -133,7 +133,7 @@ class PositionControllerNode_ChihChun(object):
         self.r = self._currpos_msg.twist.twist.angular.z
         #self.thrust = self._currpos_msg.twist.twist.linear.z
 
-        self.x_d = 1.0
+        self.x_d = 0.0
         self.y_d = 1.0
         self.z_d = 1.0
         self.yaw_d = 0.0

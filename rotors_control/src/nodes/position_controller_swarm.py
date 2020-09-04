@@ -13,7 +13,6 @@ import numpy as np
 from tf.transformations import euler_from_quaternion
 from geometry_msgs.msg import TransformStamped, Twist
 
-
 class PositionController(object):
     """ROS interface for controlling the Parrot ARDrone in the Vicon Lab."""
 
@@ -25,11 +24,11 @@ class PositionController(object):
         self.Kp_yaw = 4
 
         # natural frequencies and damping ratios
-        w_n_x = 3.0 # 2.2 / 1.8 # 1.8
-        zeta_x = 0.0 #1.0 # 0.9
+        w_n_x = 1.8#3.0 # 2.2 / 1.8 # 1.8
+        zeta_x = 1.0 #1.0 # 0.9
         w_n_y = 3.0
-        zeta_y = 1.0
-        w_n_z = 10.0 # 4.0 / 1.8 # 2
+        zeta_y = 2.0
+        w_n_z = 1.0 # 4.0 / 1.8 # 2
         zeta_z = 1.0 #1.0 # 0.7
 
         # gains

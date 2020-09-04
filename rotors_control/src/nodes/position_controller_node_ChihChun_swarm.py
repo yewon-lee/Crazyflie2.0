@@ -32,7 +32,7 @@ from std_msgs.msg import Empty, String
 from trajectory_msgs.msg import MultiDOFJointTrajectory, MultiDOFJointTrajectoryPoint # subscribe
 from nav_msgs.msg import Odometry # subscribe
 from mav_msgs.msg import Actuators # publish
-from roll_pitch_yawrate_thrust_crazyflie import roll_pitch_yawrate_thrust_crazyflie # change?
+from roll_pitch_yawrate_thrust_crazyflie_swarm import roll_pitch_yawrate_thrust_crazyflie_swarm # change?
 
 # NOTES:
 # Check whether subscribes to desired position
@@ -92,7 +92,7 @@ class PositionControllerNode_ChihChun(object):
     def set_rotor_vel(self, pitch_c, roll_c, yaw_rate_c, p, q, r, roll, pitch, yaw, thrust): # change arg names?
 
         # get conversions
-        rotorvel_converter = roll_pitch_yawrate_thrust_crazyflie(pitch_c, roll_c, yaw_rate_c, p, q, r, roll, pitch, yaw, thrust)
+        rotorvel_converter = roll_pitch_yawrate_thrust_crazyflie_swarm(pitch_c, roll_c, yaw_rate_c, p, q, r, roll, pitch, yaw, thrust)
         rotor_velocities = rotorvel_converter.CalculateRotorVelocities()
 
         # publish rotor velocities to Actuator
@@ -197,7 +197,7 @@ class PositionControllerNode_ChihChun(object):
 
 if __name__ == '__main__':
     # write code to create PositionControllerNode_ChihChun
-    rospy.init_node('position_controller_node_ChihChun', disable_signals=True)
+    rospy.init_node('position_controller_node_ChihChun_swarm', disable_signals=True)
 
     ''' Setup position and orientation for planning '''
 
