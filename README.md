@@ -1,7 +1,7 @@
 # Crazyflie2.0
 This is an extension of CrazyS, originally developed by @gsilano (see https://github.com/gsilano/CrazyS for details). A few innovations include:
 - Using a new position controller that allows the Crazyflie to move in the x-y direction, and not just the y direction
-- Integrating the FMP algorithm with the controller
+- Integrating FMP with the controller
 - The above can be done with single or multiple Crazyflies
 
 Files in my github not found in @gsilano's:
@@ -9,12 +9,8 @@ Files in my github not found in @gsilano's:
 - rotors_control/src/nodes/position_controller_node_ChihChun_1.py 
 - rotors_control/src/nodes/position_controller_node_ChihChun_2.py 
 - rotors_control/src/nodes/position_controller_node_ChihChun_flocking.py
-- rotors_control/src/nodes/position_controller_node_ChihChun_flocking_1.py <- not used
-- rotors_control/src/nodes/position_controller_node_ChihChun_flocking_2.py <- not used
-- rotors_conrol/src/nodes/position_controller_node_ChihChun_swarm.py <- not used
 - rotors_gazebo/launch/crazyflie2_hovering_example_ChihChun.launch 
 - rotors_gazebo/launch/crazyflie2_multiUAV_flocking_ChihChun.launch
-- rotors_gazebo/launch/crazyflie2_singleUAV_flocking_ChihChun.launch <- not used
 - rotors_gazebo/launch/crazyflie2_swarm_example_ChihChun.launch 
 
 In the following sections, I demonstrate the setup and elaborate on the different scenarios that can be simulated in Gazebo.
@@ -173,9 +169,7 @@ This simulation uses the same controllers as those of the single-UAV simulation.
 ### Limitations
 
 Current limitations of this double-UAV trajectory tracking example are:
-- The simulation is very slow with two UAVs; extending it to more UAVs will likely be even slower.
-- Extending this simulation to more UAVs is a little tedious due to the structure of the code.
-- The simulation has not been run with differing initial and final positions from the default ones. This is something that should be investigated further.
+- The simulation is very slow as more UAVs are added
 
 ## Simulating double-UAV system with the FMP algorithm
 
@@ -201,6 +195,5 @@ yaw_ds = [0.0,0.0] # value in index 0 and 1 is the desired vx for crazyflie_0 an
 
 This simulation can also be extended to more UAVs. The current /rotors_control/src/nodes/position_controller_node_ChihChun_flocking.py supports up to four Crazyflies, but more can be added.
 
-### Limitations
-- There are still several bugs that need to be fixed before this simulation is fully functional. 
+
 
