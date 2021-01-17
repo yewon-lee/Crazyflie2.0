@@ -29,12 +29,6 @@ This simulation takes a single Crazyflie from position (0,0,0) to (1,1,1) using 
 roslaunch rotors_gazebo crazyflie2_hovering_example_ChihChun.launch
 ```
 
-### Observations
-
-A plot of what should be observed for this simulation is shown below. The following is a position versus time plot of the Crazyflie when the simulation is launched. The y-axis is the position (in x, y and z directions) in meters and the x-axis is the time in seconds. The x and y positions converge relatively well, but there is a lot of oscillation in the z direction.
-
-![a-singleUAV](https://user-images.githubusercontent.com/68444609/91673961-85ba1380-eaeb-11ea-8222-36530fc9acac.png)
-
 ### Customizing
 
 It is possible to change the final desired position, velocity, and yaw of the Crazyflie. To customize these, change the following variables in rotors_control/src/nodes/position_controller_node_ChihChun.py:
